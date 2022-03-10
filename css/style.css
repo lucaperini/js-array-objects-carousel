@@ -5,12 +5,17 @@ body{
 div.my-carousel-container{
     min-height: 700px;
     min-width:800px ;
-    background-color: aquamarine;
+    
 }
 
 div.my-carousel-images{
-    background-color: cadetblue;
+    
     min-height: 540px;
+}
+
+.picture {
+    width:100%;
+    object-fit:cover;
 }
 
 div.my-thumbnails{

@@ -17,6 +17,8 @@ E se volessi un bottone per invertire la "direzione" del carosello?
  *
  */
 
+// Creo Array di oggetti slider
+
 const slider = [
     {
         image: 'https://picsum.photos/750/540?random=1',
@@ -25,32 +27,41 @@ const slider = [
     },
     {
         image: 'https://picsum.photos/750/540?random=2',
-        title: 'Image One',
+        title: 'Image Two',
         description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et.',
     },
     {
         image: 'https://picsum.photos/750/540?random=3',
-        title: 'Image One',
+        title: 'Image Three',
         description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et.',
 
     },
     {
         image: 'https://picsum.photos/750/540?random=4',
-        title: 'Image One',
+        title: 'Image Four',
         description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et.',
 
     },
     {
         image:'https://picsum.photos/750/540?random=5',
-        title:'Image One',
+        title:'Image Five',
         description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et.',
 
     },
     {
         image:'https://picsum.photos/750/540?random=6',
-        title:'Image One',
+        title:'Image Six',
         description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et.',
     },
     
 ]
+
+
+
+//inserisco immagini tramite ciclo
+for (let i = 0; i < slider.length; i++){
+    document.querySelector('div#my-carousel .my-carousel-images').innerHTML = `<img src="${slider[i].image}" class="picture" alt="random picture">`;
+}
+
+
 

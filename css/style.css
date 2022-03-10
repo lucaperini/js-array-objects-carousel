@@ -9,7 +9,6 @@ div.my-carousel-container{
 }
 
 div.my-carousel-images{
-    
     min-height: 540px;
 }
 
@@ -21,6 +20,26 @@ div.my-carousel-images{
 div.my-thumbnails{
     background-color: violet;
     min-height: 160px;
+    align-items:center;
+    
+}
+
+.thumbnail-item{
+    width:10%;
+    position:absolute;
+    top:50%;
+    transform:translate(-50%, -50%);
+    
+    
+    
+}
+
+.ciccio{
+    width:calc(100% / 11);
+   
+    
+    display:inline-block;
+    
 }
 
 div.my-previous,
@@ -35,6 +54,8 @@ div.my-next{
     transform: translateY(-50%);
     cursor: pointer;
 }
+
+
 
 div.my-previous{
     left: 1rem;

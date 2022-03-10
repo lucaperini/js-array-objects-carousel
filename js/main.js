@@ -60,7 +60,18 @@ const slider = [
 
 //inserisco immagini tramite ciclo
 for (let i = 0; i < slider.length; i++){
-    document.querySelector('div#my-carousel .my-carousel-images').innerHTML = `<img src="${slider[i].image}" class="picture" alt="random picture">`;
+    document.querySelector('div#my-carousel .my-carousel-images').innerHTML += 
+    `<img src="${slider[i].image}" class="picture" alt="random picture">
+    <div class="item-description>
+    <h2>${slider[i].title}</h2>
+    <p>${slider[i].description}<p>
+    </div`
+}
+for (let i = 0; i < slider.length; i++){
+    document.querySelector('.my-thumbnails').innerHTML += 
+    `<div class="ciccio">
+    <img src="${slider[i].image}" class="thumbnail-item" alt="random picture">
+    </div>`
 }
 
 

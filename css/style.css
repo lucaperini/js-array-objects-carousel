@@ -15,9 +15,14 @@ div.my-carousel-images{
 .picture {
     width:100%;
     object-fit:cover;
+    display: none;
 }
 
-div.my-thumbnails{
+.picture.active{
+    display: block;
+}
+
+.my-thumbnails{
     background-color: violet;
     min-height: 160px;
     align-items:center;
@@ -29,15 +34,16 @@ div.my-thumbnails{
     position:absolute;
     top:50%;
     transform:translate(-50%, -50%);
-    
-    
-    
+    filter: brightness(.4);
 }
 
-.ciccio{
-    width:calc(100% / 11);
-   
-    
+.thumbnail-item.active{
+    filter:brightness(1);
+    border: 3px rgb(197, 197, 197) solid;
+}
+
+.thumbnail-box{
+    width:calc(100% / 10 );
     display:inline-block;
     
 }
@@ -54,8 +60,6 @@ div.my-next{
     transform: translateY(-50%);
     cursor: pointer;
 }
-
-
 
 div.my-previous{
     left: 1rem;

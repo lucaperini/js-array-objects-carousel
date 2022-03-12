@@ -50,10 +50,11 @@ for (let i = 0; i < slider.length; i++){
     <img src="${slider[i].image}" class="thumbnail-item" alt="random picture">
     </div>`
 }
-
 let activeElement = 0;
 let offElement = 0;
-let isForwardScroll = true;
+let isNext = true;
+let isPlaying = true;
+
 
 document.getElementsByClassName('picture')[activeElement].classList.add('active');
 document.getElementsByClassName('item-description')[activeElement].classList.add('active');
@@ -65,7 +66,7 @@ prev.addEventListener('click', function() {
     offElement = activeElement;
     if( activeElement === 0){
         activeElement = slider.length - 1;
-        isForwardScroll=false;
+        
     } else {
         activeElement--;
         
@@ -74,35 +75,62 @@ prev.addEventListener('click', function() {
     onOff('picture', 'item-description', 'thumbnail-item', activeElement, offElement);
 });
 
-
-
 const next = document.querySelector('div.my-next');
 
 next.addEventListener('click', function() {
+    
     offElement = activeElement;
     if( activeElement === slider.length - 1){
         activeElement = 0;
         
     } else {
         activeElement++;
-        isForwardScroll=true;
+        
     };
     onOff('picture', 'item-description', 'thumbnail-item', activeElement, offElement)
 })
 
-setInterval(function () { 
-    if(isForwardScroll){
+let autoPlay = setInterval(myFunction, 3000);
+
+function myFunction() {
+    if(isNext){
         next.click();
     }else{
         prev.click();
     }
-}, 3000);
+}  
+    
+
 
 function onOff (carouselPath, descPath, thumbnailPath, activeElement, noneElement){
-    document.getElementsByClassName(carouselPath)[noneElement].classList.remove('active');
-    document.getElementsByClassName(descPath)[noneElement].classList.remove('active');
-    document.getElementsByClassName(thumbnailPath)[noneElement].classList.remove('active');
-    document.getElementsByClassName(carouselPath)[activeElement].classList.add('active');
-    document.getElementsByClassName(descPath)[activeElement].classList.add('active');
-    document.getElementsByClassName(thumbnailPath)[activeElement].classList.add('active');
+document.getElementsByClassName(carouselPath)[noneElement].classList.remove('active');
+document.getElementsByClassName(descPath)[noneElement].classList.remove('active');
+document.getElementsByClassName(thumbnailPath)[noneElement].classList.remove('active');
+document.getElementsByClassName(carouselPath)[activeElement].classList.add('active');
+document.getElementsByClassName(descPath)[activeElement].classList.add('active');
+document.getElementsByClassName(thumbnailPath)[activeElement].classList.add('active');
 }
+
+document.querySelector('#my-after-carousel').innerHTML +=
+`<button id="my-btn-play" class="btn btn-success text-black text-center">Play</button>
+<button id="my-btn-stop" class="btn btn-danger text-black text-center">Stop</button>
+<button id="my-btn" class="btn btn-success text-black text-center">Reverse</button>`
+
+
+
+document.querySelector('#my-btn').addEventListener('click', function() {
+    isNext = !isNext;
+}); 
+
+document.querySelector('#my-btn-stop').addEventListener('click', function(){
+    clearInterval(autoPlay);
+    isPlaying=false;
+});
+
+document.querySelector('#my-btn-play').addEventListener('click', function(){
+    if (isPlaying == false){
+    setInterval (myFunction, 3000);
+    isPlaying=true;
+    } 
+    
+});

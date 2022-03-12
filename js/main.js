@@ -1,102 +1,108 @@
 // Creo Array di oggetti slider
 const slider = [
     {
-        image: 'https://picsum.photos/750/540?random=1',
-        title: 'Image One',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et.',
+        image: 'https://picsum.photos/750/350?random=1',
+        title: 'Random #1',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     },
     {
-        image: 'https://picsum.photos/750/540?random=2',
-        title: 'Image Two',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et.',
+        image: 'https://picsum.photos/750/350?random=2',
+        title: 'Random #2',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     },
     {
-        image: 'https://picsum.photos/750/540?random=3',
-        title: 'Image Three',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et.',
+        image: 'https://picsum.photos/750/350?random=3',
+        title: 'Random #3',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 
     },
     {
-        image: 'https://picsum.photos/750/540?random=4',
-        title: 'Image Four',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et.',
+        image: 'https://picsum.photos/750/350?random=4',
+        title: 'Random #4',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 
     },
     {
-        image:'https://picsum.photos/750/540?random=5',
-        title:'Image Five',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et.',
+        image:'https://picsum.photos/750/350?random=5',
+        title:'Random #5',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 
     },
     {
-        image:'https://picsum.photos/750/540?random=6',
-        title:'Image Six',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et.',
+        image:'https://picsum.photos/750/350?random=6',
+        title:'Random #6',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     },
     
 ]
 
-//inserisco immagini tramite ciclo
 for (let i = 0; i < slider.length; i++){
-    document.querySelector('div#my-carousel .my-carousel-images').innerHTML += 
-    `<img src="${slider[i].image}" class="picture" alt="random picture">
-    <div class="item-description>
-    <h2>${slider[i].title}</h2>
-    <p>${slider[i].description}<p>
-    </div`
-}
-
-for (let i = 0; i < slider.length; i++){
-    document.querySelector('.my-thumbnails').innerHTML += 
+    document.querySelector('div#my-carousel .my-carousel-images').innerHTML +=
+    `<div>
+    <img src="${slider[i].image}" class="picture" alt= "picture">
+    <div class="item-description">
+        <h2 class="fw-bold text-white fs-4">${slider[i].title}</h2>
+        <p class="fst-italic text-white px-2">${slider[i].description}<p>
+    </div>
+    </div>`
+    document.querySelector('.my-thumbnails').innerHTML +=
     `<div class="thumbnail-box">
     <img src="${slider[i].image}" class="thumbnail-item" alt="random picture">
     </div>`
 }
 
 let activeElement = 0;
+let offElement = 0;
+let isForwardScroll = true;
 
 document.getElementsByClassName('picture')[activeElement].classList.add('active');
-
+document.getElementsByClassName('item-description')[activeElement].classList.add('active');
 document.getElementsByClassName('thumbnail-item')[activeElement].classList.add('active');
 
 const prev = document.querySelector('div.my-previous');
 
 prev.addEventListener('click', function() {
-    
-    document.getElementsByClassName('picture')[activeElement].classList.remove('active');
-    document.getElementsByClassName('thumbnail-item')[activeElement].classList.remove('active');
-
-    
+    offElement = activeElement;
     if( activeElement === 0){
         activeElement = slider.length - 1;
+        isForwardScroll=false;
     } else {
         activeElement--;
+        
     }
     
-    document.getElementsByClassName('picture')[activeElement].classList.add('active');
-    document.getElementsByClassName('thumbnail-item')[activeElement].classList.add('active');
+    onOff('picture', 'item-description', 'thumbnail-item', activeElement, offElement);
 });
+
+
 
 const next = document.querySelector('div.my-next');
 
 next.addEventListener('click', function() {
-    
-    document.getElementsByClassName('picture')[activeElement].classList.remove('active');
-    document.getElementsByClassName('thumbnail-item')[activeElement].classList.remove('active');
-
+    offElement = activeElement;
     if( activeElement === slider.length - 1){
         activeElement = 0;
+        
     } else {
         activeElement++;
+        isForwardScroll=true;
+    };
+    onOff('picture', 'item-description', 'thumbnail-item', activeElement, offElement)
+})
+
+setInterval(function () { 
+    if(isForwardScroll){
+        next.click();
+    }else{
+        prev.click();
     }
-    
-    
-    document.getElementsByClassName('picture')[activeElement].classList.add('active');
-    document.getElementsByClassName('thumbnail-item')[activeElement].classList.add('active');
-});
+}, 3000);
 
-
-
-
-
-
+function onOff (carouselPath, descPath, thumbnailPath, activeElement, noneElement){
+    document.getElementsByClassName(carouselPath)[noneElement].classList.remove('active');
+    document.getElementsByClassName(descPath)[noneElement].classList.remove('active');
+    document.getElementsByClassName(thumbnailPath)[noneElement].classList.remove('active');
+    document.getElementsByClassName(carouselPath)[activeElement].classList.add('active');
+    document.getElementsByClassName(descPath)[activeElement].classList.add('active');
+    document.getElementsByClassName(thumbnailPath)[activeElement].classList.add('active');
+}

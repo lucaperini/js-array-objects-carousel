@@ -53,7 +53,7 @@ for (let i = 0; i < slider.length; i++){
 let activeElement = 0;
 let offElement = 0;
 let isNext = true;
-let isPlaying = true;
+
 
 
 document.getElementsByClassName('picture')[activeElement].classList.add('active');
@@ -112,25 +112,13 @@ document.getElementsByClassName(thumbnailPath)[activeElement].classList.add('act
 }
 
 document.querySelector('#my-after-carousel').innerHTML +=
-`<button id="my-btn-play" class="btn btn-success text-black text-center">Play</button>
+`<button id="my-btn" class="btn btn-success text-black text-center">Reverse</button>
 <button id="my-btn-stop" class="btn btn-danger text-black text-center">Stop</button>
-<button id="my-btn" class="btn btn-success text-black text-center">Reverse</button>`
-
-
-
+`
 document.querySelector('#my-btn').addEventListener('click', function() {
     isNext = !isNext;
 }); 
 
 document.querySelector('#my-btn-stop').addEventListener('click', function(){
     clearInterval(autoPlay);
-    isPlaying=false;
-});
-
-document.querySelector('#my-btn-play').addEventListener('click', function(){
-    if (isPlaying == false){
-    setInterval (myFunction, 3000);
-    isPlaying=true;
-    } 
-    
 });

@@ -36,7 +36,7 @@ div.my-carousel-images{
 
 .item-description{
     position:absolute;
-    bottom:15%;
+    bottom:13%;
     left:50%;
     transform:translateX(-50%); 
     background-color:goldenrod;
@@ -68,7 +68,6 @@ div.my-carousel-images{
 .thumbnail-box{
     width:10%;
     display:inline-block;
-    
 }
 
 div.my-previous,

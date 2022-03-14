@@ -50,11 +50,10 @@ for (let i = 0; i < slider.length; i++){
     <img src="${slider[i].image}" class="thumbnail-item" alt="random picture">
     </div>`
 }
+
 let activeElement = 0;
 let offElement = 0;
 let isNext = true;
-
-
 
 document.getElementsByClassName('picture')[activeElement].classList.add('active');
 document.getElementsByClassName('item-description')[activeElement].classList.add('active');
@@ -99,22 +98,20 @@ function myFunction() {
         prev.click();
     }
 }  
-    
-
 
 function onOff (carouselPath, descPath, thumbnailPath, activeElement, noneElement){
-document.getElementsByClassName(carouselPath)[noneElement].classList.remove('active');
-document.getElementsByClassName(descPath)[noneElement].classList.remove('active');
-document.getElementsByClassName(thumbnailPath)[noneElement].classList.remove('active');
-document.getElementsByClassName(carouselPath)[activeElement].classList.add('active');
-document.getElementsByClassName(descPath)[activeElement].classList.add('active');
-document.getElementsByClassName(thumbnailPath)[activeElement].classList.add('active');
+    document.getElementsByClassName(carouselPath)[noneElement].classList.remove('active');
+    document.getElementsByClassName(descPath)[noneElement].classList.remove('active');
+    document.getElementsByClassName(thumbnailPath)[noneElement].classList.remove('active');
+    document.getElementsByClassName(carouselPath)[activeElement].classList.add('active');
+    document.getElementsByClassName(descPath)[activeElement].classList.add('active');
+    document.getElementsByClassName(thumbnailPath)[activeElement].classList.add('active');
 }
 
 document.querySelector('#my-after-carousel').innerHTML +=
-`<button id="my-btn" class="btn btn-success text-black text-center">Reverse</button>
-<button id="my-btn-stop" class="btn btn-danger text-black text-center">Stop</button>
-`
+    `<button id="my-btn" class="btn btn-success text-black text-center">Reverse</button>
+    <button id="my-btn-stop" class="btn btn-danger text-black text-center">Stop</button>`
+
 document.querySelector('#my-btn').addEventListener('click', function() {
     isNext = !isNext;
 }); 
